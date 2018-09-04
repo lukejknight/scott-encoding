@@ -1,10 +1,25 @@
 package scott
 
-trait SList[A] {
+sealed trait SList[A] {
   def runList[B](nil: => B, cons: A => SList[A] => B): B
 }
 
 object SList {
+
+  /**
+    * Convenient constructor for the nil case
+    */
+  def nil[A]: SList[A] = new SList[A] {
+    override def runList[B](nil: => B, cons: A => SList[A] => B): B = nil
+  }
+
+  /**
+    * Convenient constructor for the cons case
+    */
+  def cons[A](a: A)(l: SList[A]): SList[A] = new SList[A] {
+    override def runList[B](nil: => B, cons: A => SList[A] => B): B = cons(a)(l)
+  }
+
   def toList[A](l: SList[A]): List[A] = sys.error("toList")
 
   def fromList[A](l: List[A]): SList[A] = sys.error("fromList")

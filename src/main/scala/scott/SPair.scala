@@ -1,10 +1,18 @@
 package scott
 
-trait SPair[A, B] {
+sealed trait SPair[A, B] {
   def runPair[C](f: A => B => C): C
 }
 
 object SPair {
+
+  /**
+    * Convenient constructor for SPair
+    */
+  def sPair[A, B](a: A, b: B): SPair[A, B] = new SPair[A, B] {
+    override def runPair[C](f: A => B => C): C = f(a)(b)
+  }
+
   def toPair[A, B](p: SPair[A, B]): (A, B) = sys.error("toPair")
 
   def fromPair[A, B](p: (A, B)): SPair[A, B] = sys.error("fromPair")

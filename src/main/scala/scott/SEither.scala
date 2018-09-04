@@ -1,10 +1,24 @@
 package scott
 
-trait SEither[A, B] {
+sealed trait SEither[A, B] {
   def runEither[C](left: A => C, right: B => C): C
 }
 
 object SEither {
+
+  /**
+    * Convenient constructor for the left case
+    */
+  def left[A, B](a: A): SEither[A, B] = new SEither[A, B] {
+    override def runEither[C](left: A => C, right: B => C): C = left(a)
+  }
+
+  /**
+    * Convenient constructor for the right case
+    */
+  def right[A, B](b: B): SEither[A, B] = new SEither[A, B] {
+    override def runEither[C](left: A => C, right: B => C): C = right(b)
+  }
 
   def toEither[A, B](e: SEither[A, B]): Either[A, B] = sys.error("toEither")
 
