@@ -24,9 +24,9 @@ object SOption {
 
   def fromOption[A](o: Option[A]): SOption[A] = sys.error("fromOption")
 
-  def isSome[A](o: Option[A]): Boolean = sys.error("isSome")
+  def isSome[A](o: SOption[A]): Boolean = sys.error("isSome")
 
-  def isNone[A](o: Option[A]): Boolean = sys.error("isNone")
+  def isNone[A](o: SOption[A]): Boolean = sys.error("isNone")
 
-  def catOptions[A](l: SList[Option[A]]): SList[A] = sys.error("catOptions")
+  def catOptions[A](l: SList[SOption[A]]): SList[A] = sys.error("catOptions")
 }
