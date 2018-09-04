@@ -23,7 +23,7 @@ object SPair {
 
   def swap[A, B](p: SPair[A, B]): SPair[B, A] = sys.error("swap")
 
-  def curry[A, B, C](p: SPair[A, B => C]): A => B => C = sys.error("curry")
+  def curry[A, B, C](p: SPair[A, B] => C): A => B => C = sys.error("curry")
 
-  def uncurry[A, B, C](f: A => B => C): SPair[A, B => C] = sys.error("uncurry")
+  def uncurry[A, B, C](f: A => B => C): SPair[A, B] => C = sys.error("uncurry")
 }
