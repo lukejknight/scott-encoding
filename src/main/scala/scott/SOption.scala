@@ -28,5 +28,11 @@ object SOption {
 
   def isNone[A](o: SOption[A]): Boolean = sys.error("isNone")
 
+  def filter[A](f: A => Boolean, o: SOption[A]): SOption[A] = sys.error("filter")
+
+  def map[A, B](f: A => B, o: SOption[A]): SOption[B] = sys.error("map")
+
+  def flatMap[A, B](f: A => SOption[B], o: SOption[A]): SOption[B] = sys.error("flatMap")
+
   def catOptions[A](l: SList[SOption[A]]): SList[A] = sys.error("catOptions")
 }
