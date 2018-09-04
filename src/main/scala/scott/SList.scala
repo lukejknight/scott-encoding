@@ -24,11 +24,11 @@ object SList {
 
   def fromList[A](l: List[A]): SList[A] = sys.error("fromList")
 
-  def cons[A](a: A, l: SList[A]): SList[A] = sys.error("cons")
+  def append[A](a: A, l: SList[A]): SList[A] = sys.error("append")
 
   def concat[A](l1: SList[A], l2: SList[A]): SList[A] = sys.error("concat")
 
-  def nil[A](l: SList[A]): Boolean = sys.error("nil")
+  def isEmpty[A](l: SList[A]): Boolean = sys.error("isEmpty")
 
   def length[A](l: SList[A]): Int = sys.error("length")
 
