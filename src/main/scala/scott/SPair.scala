@@ -13,17 +13,17 @@ object SPair {
     override def runPair[C](f: A => B => C): C = f(a)(b)
   }
 
-  def toPair[A, B](p: SPair[A, B]): (A, B) = sys.error("toPair")
+  def toPair[A, B](p: SPair[A, B]): (A, B) = p.runPair(a => b => (a, b))
 
-  def fromPair[A, B](p: (A, B)): SPair[A, B] = sys.error("fromPair")
+  def fromPair[A, B](p: (A, B)): SPair[A, B] = sPair(p._1, p._2)
 
-  def fst[A, B](p: SPair[A, B]): A = sys.error("fst")
+  def fst[A, B](p: SPair[A, B]): A = p.runPair(a => _ => a)
 
-  def snd[A, B](p: SPair[A, B]): B = sys.error("snd")
+  def snd[A, B](p: SPair[A, B]): B = p.runPair(_ => b => b)
 
-  def swap[A, B](p: SPair[A, B]): SPair[B, A] = sys.error("swap")
+  def swap[A, B](p: SPair[A, B]): SPair[B, A] = p.runPair(a => b => sPair(b, a))
 
-  def curry[A, B, C](p: SPair[A, B] => C): A => B => C = sys.error("curry")
+  def curry[A, B, C](p: SPair[A, B] => C): A => B => C = a => b => p(sPair(a, b))
 
-  def uncurry[A, B, C](f: A => B => C): SPair[A, B] => C = sys.error("uncurry")
+  def uncurry[A, B, C](f: A => B => C): SPair[A, B] => C = p => p.runPair(f)
 }
