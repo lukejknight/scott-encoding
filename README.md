@@ -11,3 +11,5 @@ Adapted from the [original Haskell exercise](https://www.codewars.com/kata/scott
     ```
     sbt test
     ```
+
+Sample solutions can be found in the `sample-solutions` branch.
